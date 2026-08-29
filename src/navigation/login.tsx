@@ -20,7 +20,7 @@ const LoginPage = ({ pca }: { pca: PublicClientApplication }) => {
 
                 return pca
                     .acquireTokenSilent({ scopes: apiRequest.scopes, account })
-                    .then((tokenResponse) => {
+                    .then(() => {
                         console.log('Token acquired silently:')
                         // TODO: use tokenResponse.accessToken to call your API
                     })
