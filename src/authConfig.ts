@@ -29,7 +29,7 @@ export const loginRequest = {
 // Scope requested when calling OUR OWN protected backend API.
 // This must match the scope you exposed in "Expose an API" during app registration.
 export const apiRequest = {
-    scopes: ['openid', 'profile', `api://${import.meta.env.VITE_MSAL_TENANT_ID}/access_as_user`],
+    scopes: ['openid', 'profile', `api://${import.meta.env.VITE_MSAL_CLIENT_ID}/access_as_user`],
 };
 
 // export const apiConfig = {
