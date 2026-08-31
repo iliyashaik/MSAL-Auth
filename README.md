@@ -170,9 +170,16 @@ src/
 
 ---
 
-## Key Files
+main.tsx
+ └── initialize MSAL
+     └── handleRedirectPromise
+         └── restore active account
+             └── render App
 
-| File | Purpose |
-|---|---|
-| `src/authConfig.ts` | Azure AD app config, login scopes, API scopes |
-| `src/App.tsx` | Login form, MSAL init, redirect handling, silent token acquisition |
+App.tsx
+ └── routing
+      ├── LoginPage
+      └── HomePage
+           └── getUsers()
+                └── acquireTokenSilent()
+                     └── call backend
