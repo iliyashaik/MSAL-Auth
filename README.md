@@ -169,7 +169,7 @@ src/
 ```
 
 ---
-
+```
 main.tsx
  └── initialize MSAL
      └── handleRedirectPromise
@@ -183,3 +183,4 @@ App.tsx
            └── getUsers()
                 └── acquireTokenSilent()
                      └── call backend
+```
