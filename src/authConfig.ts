@@ -7,10 +7,10 @@ import type { BrowserSystemOptions, Configuration } from '@azure/msal-browser';
 
 export const msalConfig = {
     auth: {
-        clientId: "*****",
-        authority: "https://login.microsoftonline.com/*****",
-        redirectUri: "http://localhost:3994/home",
-        postLogoutRedirectUri: "http://localhost:3994/"
+        clientId: import.meta.env.VITE_MSAL_CLIENT_ID as string,
+        authority: `https://login.microsoftonline.com/${import.meta.env.VITE_MSAL_TENANT_ID}`,
+        redirectUri: import.meta.env.VITE_REDIRECT_URI as string,
+        postLogoutRedirectUri: import.meta.env.VITE_POST_LOGOUT_REDIRECT_URI as string,
     },
     cache: {
         // localStorage keeps the user signed in across tabs/refreshes.
@@ -29,7 +29,7 @@ export const loginRequest = {
 // Scope requested when calling OUR OWN protected backend API.
 // This must match the scope you exposed in "Expose an API" during app registration.
 export const apiRequest = {
-    scopes: ['openid', 'profile', "api://******/access_as_user"],
+    scopes: ['openid', 'profile', `api://${import.meta.env.VITE_MSAL_TENANT_ID}/access_as_user`],
 };
 
 // export const apiConfig = {
