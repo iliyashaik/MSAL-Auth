@@ -29,12 +29,12 @@ export const loginRequest = {
 // Scope requested when calling OUR OWN protected backend API.
 // This must match the scope you exposed in "Expose an API" during app registration.
 export const apiRequest = {
-    scopes: ['openid', 'profile', `api://${import.meta.env.VITE_MSAL_CLIENT_ID}/access_as_user`],
+    scopes: ["User.Read", "User.Read.All",'openid', 'profile', `api://${import.meta.env.VITE_MSAL_CLIENT_ID}/access_as_user`],
 };
 
-// export const apiConfig = {
-//     uri: "http://localhost:4000/api/profile",
-// };
+ export const apiConfig = {
+     usersUrl: "https://graph.microsoft.com/v1.0/users",
+ };
 
 /**
  * Construct a configuration object for MSAL

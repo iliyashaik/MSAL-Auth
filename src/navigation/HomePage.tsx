@@ -1,7 +1,26 @@
 import { PublicClientApplication } from '@azure/msal-browser'
-import { apiRequest, msalConfig } from '../authConfig';
+import { apiConfig, apiRequest, msalConfig } from '../authConfig';
+import { useEffect, useState } from 'react';
 
 const HomePage = ({ pca }: { pca: PublicClientApplication }) => {
+  const [token, setToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    setTimeout(() => {
+      const initialize = async () => {
+        await pca.initialize();
+        const loginRequest = { scopes: apiRequest.scopes, account: pca.getAllAccounts()[0] };
+        pca.acquireTokenSilent(loginRequest)
+          .then((tokenResponse) => {
+            setToken(tokenResponse.accessToken)
+          })
+          .catch((error) => {
+            console.error('token acquisition failed:', error)
+          })
+      };
+      initialize();
+    }, 100);
+  }, []);
 
   const logOut = async () => {
     sessionStorage.clear();
@@ -16,20 +35,16 @@ const HomePage = ({ pca }: { pca: PublicClientApplication }) => {
   }
 
   const getUsersList = async () => {
-    // Implement the logic to get the users list here
-    console.log('Initializing PCA...');
-    await pca.initialize();
-    const loginRequest = {
-      scopes: apiRequest.scopes,
-      account: pca.getAllAccounts()[0],
-    };
-    pca.handleRedirectPromise().then(() => pca.acquireTokenSilent(loginRequest))
-      .then((tokenResponse) => {
-        console.log('Token acquired silently:', tokenResponse)
-      })
-      .catch((error) => {
-        console.error('token acquisition failed:', error)
-      })
+    fetch(apiConfig.usersUrl, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    }
+    ).then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.error(error));
   };
 
   return (
