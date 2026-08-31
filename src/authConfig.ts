@@ -7,8 +7,8 @@ import type { BrowserSystemOptions, Configuration } from '@azure/msal-browser';
 
 export const msalConfig = {
     auth: {
-        clientId: "ed017393-4c3f-4cb6-9af3-017ebff83513",
-        authority: "https://login.microsoftonline.com/b86568af-753e-401e-a11c-b0f3af578639",
+        clientId: "*****",
+        authority: "https://login.microsoftonline.com/*****",
         redirectUri: "http://localhost:3994/home",
         postLogoutRedirectUri: "http://localhost:3994/"
     },
@@ -29,7 +29,7 @@ export const loginRequest = {
 // Scope requested when calling OUR OWN protected backend API.
 // This must match the scope you exposed in "Expose an API" during app registration.
 export const apiRequest = {
-    scopes: ['openid', 'profile', "api://ed017393-4c3f-4cb6-9af3-017ebff83513/access_as_user"],
+    scopes: ['openid', 'profile', "api://******/access_as_user"],
 };
 
 // export const apiConfig = {

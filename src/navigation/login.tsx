@@ -1,38 +1,8 @@
 import React from 'react'
-import { useEffect, useRef } from 'react'
 import type { PublicClientApplication } from '@azure/msal-browser'
-import { apiRequest, loginRequest } from '../authConfig'
+import { loginRequest } from '../authConfig'
 
 const LoginPage = ({ pca }: { pca: PublicClientApplication }) => {
-    const ready = useRef(false)
-    // const navigate = useNavigate()
-
-    // On page load: process the redirect response, then silently acquire a token
-    useEffect(() => {
-        if (ready.current) return
-        ready.current = true
-
-        pca.initialize()
-            .then(() => pca.handleRedirectPromise())
-            .then((response) => {
-                const account = response?.account ?? pca.getAllAccounts()[0]
-                if (!account) return
-
-                return pca
-                    .acquireTokenSilent({ scopes: apiRequest.scopes, account })
-                    .then(() => {
-                        console.log('Token acquired silently:')
-                        // TODO: use tokenResponse.accessToken to call your API
-                    })
-                    .catch((error) => {
-                        console.error('token acquisition failed:', error)
-                    })
-            })
-            .catch((error) => {
-                console.error('MSAL error:', error)
-            })
-    }, [])
-
     const submit = async (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault()
         await pca.loginRedirect(loginRequest)
