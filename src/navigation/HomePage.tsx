@@ -15,7 +15,7 @@ const HomePage = ({ pca }: { pca: PublicClientApplication }) => {
     );
   }
 
-  const getUsersList = async (event: React.MouseEvent<HTMLButtonElement>) => {
+  const getUsersList = async () => {
     // Implement the logic to get the users list here
     console.log('Initializing PCA...');
     await pca.initialize();
