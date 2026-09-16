@@ -1,0 +1,27 @@
+{
+  "name": "msal-backend",
+  "version": "1.0.0",
+  "description": "Backend for Microsoft Authentication Library (MSAL) and Microsoft Entra ID, supporting seamless user sign-in, sign-out, and token-based authentication",
+  "homepage": "https://github.com/iliyashaik/MSAL-Auth#readme",
+  "bugs": {
+    "url": "https://github.com/iliyashaik/MSAL-Auth/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iliyashaik/MSAL-Auth.git"
+  },
+  "author": "iliyashaik",
+  "type": "module",
+  "main": "server.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.4.0"
+  }
+}
