@@ -48,6 +48,12 @@ jobs:
         with:
           name: node-app
       
+      - name: Check Azure account
+        run: |
+          az login
+          az account show
+          az account list
+          
       - name: Login to Azure
         uses: azure/login@v3
         with:
