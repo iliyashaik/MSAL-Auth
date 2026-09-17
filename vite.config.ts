@@ -8,6 +8,6 @@ export default defineConfig({
     port: 3994,
   },
   build: {
-    sourceMap: true
+    sourcemap: true
   }
 })
