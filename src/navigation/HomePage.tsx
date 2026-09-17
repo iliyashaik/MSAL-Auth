@@ -10,7 +10,7 @@ const HomePage = ({ pca }: { pca: PublicClientApplication }) => {
       const initialize = async () => {
         await pca.initialize();
         const loginRequest = { scopes: apiRequest.scopes, account: pca.getAllAccounts()[0] };
-        pca.acquireTokenSilent(loginRequest)
+        await pca.acquireTokenSilent(loginRequest)
           .then((tokenResponse) => {
             setToken(tokenResponse.accessToken)
           })
