@@ -32,6 +32,7 @@ jobs:
           VITE_MSAL_CLIENT_ID: ${{ secrets.VITE_MSAL_CLIENT_ID }}
           VITE_MSAL_TENANT_ID: ${{ secrets.VITE_MSAL_TENANT_ID }}
           VITE_REDIRECT_URI: ${{ secrets.VITE_REDIRECT_URI }}
+          VITE_POST_LOGOUT_REDIRECT_URI: ${{ secrets.VITE_POST_LOGOUT_REDIRECT_URI }}
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
