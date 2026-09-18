@@ -27,13 +27,13 @@ export const loginRequest = {
 };
 
 // Scope requested when calling OUR OWN protected backend API.
-const backEndApiRequest = {
-    scopes: ["api://0e1a17ea-0f4e-4716-90fe-6caf985857d3/validateToken"]
+export const backEndApiRequest = {
+    scopes: [`api://${import.meta.env.VITE_BACKEND_CLIENT_ID}/access_as_user`]
 }
 // This must match the scope you exposed in "Expose an API" during app registration.
-export const apiRequest = {
-    scopes: ["User.Read", "User.Read.All",'openid', 'profile', `api://${import.meta.env.VITE_MSAL_CLIENT_ID}/access_as_user`],
-};
+//export const apiRequest = {
+//    scopes: ["User.Read", "User.Read.All",'openid', 'profile', `api://${import.meta.env.VITE_MSAL_CLIENT_ID}/access_as_user`],
+//};
 
  export const apiConfig = {
      usersUrl: "https://graph.microsoft.com/v1.0/users",
