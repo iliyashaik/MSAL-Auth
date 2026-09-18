@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { createRemoteJWKSet, jwtVerify, JWTPayload } from "jose";
 
-const tenantId = 'b86568af-753e-401e-a11c-b0f3af578639';
-const backendClientId = '0e1a17ea-0f4e-4716-90fe-6caf985857d3';
+const tenantId = process.env.VITE_MSAL_TENANT_ID;
+const backendClientId = process.env.VITE_BACKEND_CLIENT_ID;
 
 const issuer =
     `https://login.microsoftonline.com/${tenantId}/v2.0`;
