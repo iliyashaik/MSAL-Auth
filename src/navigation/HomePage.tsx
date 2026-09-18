@@ -1,5 +1,5 @@
 import { PublicClientApplication } from '@azure/msal-browser'
-import { apiConfig, apiRequest, msalConfig } from '../authConfig';
+import { apiConfig, msalConfig, backEndApiRequest } from '../authConfig';
 import { useEffect, useState } from 'react';
 
 const HomePage = ({ pca }: { pca: PublicClientApplication }) => {
@@ -9,7 +9,7 @@ const HomePage = ({ pca }: { pca: PublicClientApplication }) => {
     setTimeout(() => {
       const initialize = async () => {
         await pca.initialize();
-        const loginRequest = { scopes: apiRequest.scopes, account: pca.getAllAccounts()[0] };
+        const loginRequest = { scopes: backEndApiRequest.scopes, account: pca.getAllAccounts()[0] };
         await pca.acquireTokenSilent(loginRequest)
           .then((tokenResponse) => {
             setToken(tokenResponse.accessToken)
