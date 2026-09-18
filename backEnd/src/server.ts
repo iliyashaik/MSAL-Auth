@@ -11,7 +11,7 @@ dotenv.config();
  * Sets up an Express server and listens on the specified port.
  */
 const app = express();
-app.use(cors({ origin: 'http://localhost:3994' }));
+app.use(cors({ origin: process.env.FRONTEND_URL }));
 app.use(express.json());
 
 /**
