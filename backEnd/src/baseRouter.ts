@@ -11,4 +11,10 @@ baseRouter.use('/verifyToken', validateToken, (req: AuthRequest, res) => {
     });
 });
 
+baseRouter.get("/health", (req, res) => {
+  res.json({
+    status: "UP"
+  });
+});
+
 export { baseRouter };
