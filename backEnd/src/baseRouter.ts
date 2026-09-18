@@ -1,8 +1,14 @@
 import { Router } from 'express';
-import { validateToken } from './verifyToken';
+import { AuthRequest, validateToken } from './verifyToken';
 
 const baseRouter = Router();
+console.log('Base router initialized');
+baseRouter.use('/verifyToken', validateToken, (req: AuthRequest, res) => {
 
-baseRouter.use('/verifyToken', validateToken);
+    res.json({
+        message: "You successfully accessed the protected API",
+        user: req.user?.preferred_username
+    });
+});
 
-export default baseRouter;
+export { baseRouter };
