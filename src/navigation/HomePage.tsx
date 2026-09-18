@@ -1,9 +1,10 @@
 import { PublicClientApplication } from '@azure/msal-browser'
-import { apiConfig, msalConfig, backEndApiRequest } from '../authConfig';
+import { msalConfig, backEndApiRequest } from '../authConfig';
 import { useEffect, useState } from 'react';
 
 const HomePage = ({ pca }: { pca: PublicClientApplication }) => {
   const [token, setToken] = useState<string | null>(null);
+  const [isTokenValid, setIsTokenValid] = useState<string | null>(null);
 
   useEffect(() => {
     setTimeout(() => {
@@ -35,16 +36,27 @@ const HomePage = ({ pca }: { pca: PublicClientApplication }) => {
   }
 
   const getUsersList = async () => {
-    fetch(apiConfig.usersUrl, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    }
-    ).then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.error(error));
+    // fetch(apiConfig.usersUrl, {
+    //   method: "GET",
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //     "Content-Type": "application/json",
+    //   },
+    // }
+    // ).then(response => response.json())
+    //   .then(data => console.log(data))
+    //   .catch(error => console.error(error));
+    await fetch("http://localhost:4449/api/verifyToken", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then(response => response.json())
+      .then(data => {
+        setIsTokenValid(data?.message);
+      })
+      .catch(error => {
+        console.error(error)
+        setIsTokenValid(null);
+      });
   };
 
   return (
@@ -55,6 +67,20 @@ const HomePage = ({ pca }: { pca: PublicClientApplication }) => {
       minHeight: '100vh',
       position: 'relative',
     }}>
+      {isTokenValid !== null && (
+        <div style={{
+          position: 'absolute',
+          top: '47%',
+          left: '80%',
+          transform: 'translateX(-50%)',
+          color: '#F44336',
+          padding: '10px 20px',
+          borderRadius: '4px',
+        }}>
+          {isTokenValid ? 'Token is valid. Verified successfully.' : 'Token is invalid'}
+        </div>
+      )}
+
       <button
         type="button"
         onClick={logOut}
@@ -95,7 +121,7 @@ const HomePage = ({ pca }: { pca: PublicClientApplication }) => {
           gap: '8px',
           fontWeight: '600',
         }}>
-        Get Users List
+        Validate Azure Token
       </button>
     </div>
   )

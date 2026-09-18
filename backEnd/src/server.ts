@@ -2,7 +2,7 @@ import http from 'node:http';
 import express from 'express';
 import cors from 'cors';
 import dotenv from "dotenv";
-import baseRouter from './baseRouter';
+import { baseRouter } from './baseRouter';
 
 dotenv.config();
 
@@ -24,7 +24,7 @@ const server = http.createServer(app);
 */
 const PORT = process.env.PORT || 4449;
 
-app.get("/api", baseRouter);
+app.use("/api", baseRouter);
 
 /**
  * Starts the server and listens on the defined port.
