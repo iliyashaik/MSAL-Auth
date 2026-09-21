@@ -46,7 +46,7 @@ const HomePage = ({ pca }: { pca: PublicClientApplication }) => {
     // ).then(response => response.json())
     //   .then(data => console.log(data))
     //   .catch(error => console.error(error));
-    await fetch("msal-auth-backend-gyhqgsc9f9g6dqb3.swedencentral-01.azurewebsites.net/api/verifyToken", {
+    await fetch("https://msal-auth-backend-gyhqgsc9f9g6dqb3.swedencentral-01.azurewebsites.net/api/verifyToken", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then(response => response.json())
